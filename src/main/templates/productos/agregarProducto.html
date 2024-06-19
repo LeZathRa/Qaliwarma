@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+
+        <h1 class="mt-4 mb-3">
+            <small>Agregar Producto</small>
+        </h1>
+
+            <form th:action="@{/categorias/guardarProducto}" method="post">
+            <input type="hidden" th:field="*{categoria.id_categoria}" />
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required="required" />
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción:</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" required="required"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">URL de la Imagen:</label>
+                <input type="text" class="form-control" id="imagen" name="imagen" required="required" />
+            </div>
+            <div class="mb-3">
+                <label for="cantidad" class="form-label">Inventario:</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" required="required" />
+            </div>
+            <div class="mb-3">
+            <label for="categoria" class="form-label">Id de categoria:</label>
+                  <input type="text" class="form-control" id="categoria" name="categoria" readonly="readonly" th:value="${categoria.id_categoria}" />
+             </div>
+            <button type="submit" class="btn btn-primary">Guardar Producto</button>
+            <button type="button" class="btn btn-danger" th:onclick="'cancelar(\'' + ${categoria.id_categoria} + '\')'">Cancelar</button>
+        </form>
+    </div>
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:inline="javascript">
+    function cancelar(idCategoria) {
+        window.location.href = '/categorias/verProductos/' + idCategoria;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{vendor/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+
+        <h1 class="mt-4 mb-3">
+            <small>Agregar Nuevo Encargado</small>
+        </h1>
+        
+             <form th:action="@{'/guardarEncargado/' + ${colegio.id_colegio}}" method="post" th:object="${nuevoEncargado}">
+				<input type="hidden" th:field="*{colegio.id_colegio}" />
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nombre_encargado" class="form-label">Nombres encargado:</label>
+                    <input type="text" class="form-control" id="nombre_encargado" name="nombre_encargado" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="apellido_encargado" class="form-label">Apellidos encargado:</label>
+                    <input type="text" class="form-control" id="apellido_encargado" name="apellido_encargado" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="sexo" class="form-label">Sexo:</label>
+                    <select class="custom-select" id="sexo" name="sexo" required>
+                        <option value="Seleccione">Seleccione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                   </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                     <label for="imagen_perfil" class="form-label">Url Imagen de perfil:</label>
+                 <input type="text" class="form-control" id="imagen_perfil" name="imagen_perfil" required th:value="${nuevoEncargado.imagen_perfil}" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="correo" class="form-label">Correo del encargado:</label>
+                    <input type="text" class="form-control" id="correo" name="correo" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="telefono" class="form-label">Telefono:</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="fechaNacimiento" class="form-label">Fecha Nacimiento:</label>
+                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="rol_institucion" class="form-label">Rol institucional:</label>
+                    <input type="text" class="form-control" id="rol_institucion" name="rol_institucion" required>
+                </div>
+            </div>
+            
+             <div class="col-md-6 mb-3">
+                <label for="id_colegio" class="form-label">id_colegio:</label>
+<input type="text" class="form-control" id="colegio" name="colegio.id_colegio" readonly="readonly" th:value="${colegio.id_colegio}" />
+            </div>
+            <br>
+                 <button type="submit" class="btn btn-primary">Guardar</button>
+                 <a th:href="@{'/colegios/verEncargados/' + ${colegio.id_colegio}}" class="btn btn-danger">Cancelar</a>
+        </form>
+
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

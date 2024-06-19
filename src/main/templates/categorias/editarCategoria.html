@@ -1,0 +1,30 @@
+
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{vendor/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+	<div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+        <h1 class="mt-4 mb-3">
+            <small>Editar Categoría</small>
+        </h1>
+
+        <form th:action="@{/categorias/guardarCategoria}" th:object="${categoria}" method="post">
+            <input type="hidden" th:field="*{id_categoria}" />
+            
+            <div class="mb-3">
+                <label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
+                <input type="text" class="form-control" id="nombreCategoria" th:field="*{nombre_categoria}" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a th:href="@{/categorias/ListaCategorias}" class="btn btn-danger">Cancelar</a>
+        </form>
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

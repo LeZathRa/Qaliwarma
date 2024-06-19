@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+
+        <h1 class="mt-4 mb-3">
+            <small>Editar Colegio</small>
+        </h1>
+
+        <form th:action="@{/actualizarColegio}" method="post" th:object="${colegio}">
+            <div class="mb-3">
+                <label for="nombre_colegio" class="form-label">Nombre de colegio:</label>
+                <input type="text" class="form-control" id="nombre_colegio" name="nombre_colegio" th:field="*{nombre_colegio}" required>
+            </div>
+            <div class="mb-3">
+                <label for="imagen_colegio" class="form-label">URL de imagen de colegio:</label>
+                <input type="text" class="form-control" id="imagen_colegio" name="imagen_colegio" th:field="*{imagen_colegio}" required>
+            </div>
+            <div class="mb-3">
+                <label for="ubicacion" class="form-label">Ubicacion:</label>
+                <input type="text" class="form-control" id="ubicacion" name="ubicacion" th:field="*{ubicacion}" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Telefono:</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" th:field="*{telefono}" required>
+            </div>
+            <input type="hidden" th:field="*{id_colegio}"/>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a th:href="@{/colegios/ListaColegios}" class="btn btn-danger">Cancelar</a>
+        </form>
+
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

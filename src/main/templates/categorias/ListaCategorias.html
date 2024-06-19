@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{vendor/bootstrap/css/bootstrap.min.css}" />
+    
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+        <h1 class="mt-4 mb-3">
+            <small>Categorías</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item active">Categorias</li>
+        </ol>
+
+        <a th:href="@{/categorias/agregarCategoria}" class="btn btn-primary mb-3">
+            Agregar Categoría
+        </a>
+        
+        <ol class="list-group">
+            <li th:each="categoria : ${categorias}" class="list-group-item categoria">
+                <div class="row">
+                    <div class="col">
+                        <a th:href="@{'/categorias/verProductos/' + ${categoria.id_categoria}}" class="ms-2 me-auto fw-bold">
+                            <span th:text="${categoria.nombre_categoria}"></span>
+                        </a>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge bg-primary rounded-pill" th:text="${categoria.productos.size()}"></span>
+                    </div>
+                    <div class="col-auto">
+                        <a th:href="@{'/categorias/editarCategoria/' + ${categoria.id_categoria}}" class="btn btn-warning btn-sm me-1">
+                            Editar
+                        </a>
+                    </div>
+                    <div class="col-auto">
+                        <form th:action="@{'/categorias/eliminarCategoria/' + ${categoria.id_categoria}}" method="post" class="d-inline">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

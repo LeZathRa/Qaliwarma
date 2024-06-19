@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+	    <div th:insert="/fragmentos/header :: menu"></div>
+
+    <div th:insert="/fragmentos/Barranavegacioninfo :: barranav"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tab-content mt-2">
+                    <div class="tab-pane fade show active" id="info">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label" style="font-weight: bold;">Nombre:</label>
+                            <br>
+                            <span th:text="${colegio.nombre_colegio}" class="text-end"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ubicacion" class="form-label" style="font-weight: bold;">Ubicación:</label>
+                            <br>
+                            <span th:text="${colegio.ubicacion}" class="text-end"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label" style="font-weight: bold;">Teléfono:</label>
+                            <br>
+                            <span th:text="${colegio.telefono}" class="text-end"></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <a th:href="@{/colegios/editarColegio/{id_Colegio}(id_Colegio=${colegio.id_colegio})}" class="btn btn-primary">Modificar</a>
+                <form th:action="@{/eliminarColegio/{id_colegio}(id_colegio=${colegio.id_colegio})}" method="POST" class="d-inline">
+                     <input type="hidden" name="_method" value="DELETE" />
+                     <button type="submit" class="btn btn-danger">
+                              Eliminar
+                     </button>
+                 </form>
+                 <a th:href="@{/colegios/ListaColegios}" class="btn btn-secondary">Cancelar</a>
+                 </div>  
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <script th:inline="javascript">
+        function cancelar(idColegio) {
+            window.location.href = '/colegios/verColegios/' + idColegio;
+        }
+    </script>
+</body>
+</html>

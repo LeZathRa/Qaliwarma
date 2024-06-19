@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+
+        <h1 class="mt-4 mb-3 text-center">
+            <small>Editar Encargado</small>
+        </h1>
+        <form th:action="@{'/colegios/actualizarEncargado/' + ${encargado.id_encargado}}" th:object="${encargado}" method="post" class="mx-auto">
+            <input type="hidden" th:field="*{id_encargado}" />
+            <div class="mb-3 row justify-content-center">
+                <label for="nombre_encargado" class="form-label mb-1 col-4 text-end">Nombres:</label>
+                <input type="text" class="form-control col-6" th:field="*{nombre_encargado}" required="required" />
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <label for="apellido_encargado" class="form-label mb-1 col-4 text-end">Apellidos:</label>
+                <input type="text" class="form-control col-6" th:field="*{apellido_encargado}" required="required"></input>
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <label for="correo" class="form-label mb-1 col-4 text-end">Correo electrónico:</label>
+                <input type="text" class="form-control col-6" th:field="*{correo}" required="required" />
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <label for="telefono" class="form-label mb-1 col-4 text-end">Teléfono:</label>
+                <input type="text" class="form-control col-6" th:field="*{telefono}" required="required" />
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <label for="imagen_perfil" class="form-label mb-1 col-4 text-end">URL de imagen de perfil:</label>
+                <input type="text" class="form-control col-6" th:field="*{imagen_perfil}" required="required" />
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <label for="fechaNacimiento" class="form-label mb-1 col-4 text-end">Fecha de nacimiento:</label>
+                <input type="date" class="form-control col-6" th:field="*{fechaNacimiento}" required="required" />
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <label for="sexo" class="form-label mb-1 col-4 text-end">Sexo:</label>
+                <select class="form-control col-6" th:field="*{sexo}" required="required">
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <label for="rol_institucion" class="form-label mb-1 col-4 text-end">Rol Institucional:</label>
+                <input type="text" class="form-control col-6" th:field="*{rol_institucion}" required="required" />
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary mr-2">Actualizar</button>
+                </div>
+                <div class="mb-3">
+                    <a th:href="@{'/colegios/verDetallesEncargado/' + ${encargado.id_encargado}}" class="btn btn-danger">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

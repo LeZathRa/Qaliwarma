@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+
+    <div th:insert="/fragmentos/Barranavegacioninfo :: barranav"></div>
+    <br>
+    <div class="container">
+        <h1>Lista de Encargados:</h1> 
+        <div class="row justify-content-end mb-4">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <a th:href="@{'/colegios/agregarEncargado/' + ${colegio.id_colegio}}" class="btn btn-primary mr-2">Agregar Encargado</a>
+                    <a th:href="@{/colegios/ListaColegios}" class="btn btn-secondary">Regresar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div th:each="encargado, iterStat : ${encargados}" class="col-md-4 mb-4">
+                        <div class="card" style="width: 18rem;">
+                            <img th:src="${encargado.imagen_perfil}" class="card-img-top mx-auto d-block imagen-encargado" alt="Imagen de perfil" style="max-width: 200px; max-height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${encargado.nombre_encargado}"></h5>
+                                <p class="card-text">Telefono: <span th:text="${encargado.telefono}"></span></p>
+                                <p class="card-text">Rol institucional: <span th:text="${encargado.rol_institucion}"></span></p>
+                                <a th:href="@{'/colegios/verDetallesEncargado/' + ${encargado.id_encargado}}" class="btn btn-primary">Ver detalles</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

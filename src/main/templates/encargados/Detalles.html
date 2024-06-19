@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+        <h1 class="mt-4 mb-3">
+            <small>Detalles del Encargado</small>
+        </h1>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <img th:src="${encargado.imagen_perfil}" alt="Imagen del perfil del encargado" class="img-fluid" style="max-width: 100%; max-height: 100%;">
+            </div>
+            <div class="col-md-8"> 
+                <div class="mb-3">
+                    <label for="nombre" class="form-label" style="font-weight: bold;">Nombres:</label>
+                    <br>
+                    <span th:text="${encargado.nombre_encargado}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="apellido_encargado" class="form-label" style="font-weight: bold;">Apellidos:</label>
+                    <br>
+                    <span th:text="${encargado.apellido_encargado}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="correo" class="form-label" style="font-weight: bold;">Correo electronico:</label>
+                    <br>
+                    <span th:text="${encargado.correo}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono" class="form-label" style="font-weight: bold;">Telefono:</label>
+                    <br>
+                    <span th:text="${encargado.telefono}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaNacimiento" class="form-label" style="font-weight: bold;">fecha de nacimiento:</label>
+                    <br>
+                    <span type="date" th:text="${encargado.fechaNacimiento}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="sexo" class="form-label" style="font-weight: bold;">Sexo:</label>
+                    <br>
+                    <span th:text="${encargado.sexo}"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="rol_institucion" class="form-label" style="font-weight: bold;">Rol Institucional:</label>
+                    <br>
+                    <span th:text="${encargado.rol_institucion}"></span>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <a th:href="@{'/colegios/editarEncargado/' + ${encargado.id_encargado}}" class="btn btn-primary">Actualizar</a>
+                    <form th:action="@{/eliminarEncargado/{id_encargado}(id_encargado=${encargado.id_encargado})}" method="POST" class="d-inline">
+                     <input type="hidden" name="_method" value="DELETE" />
+                     <button type="submit" class="btn btn-danger">
+                              Eliminar
+                     </button>
+                 </form>
+                </div>
+                <br>
+                <div class="mb-3">
+                        <a th:href="@{'/colegios/verEncargados/' + ${colegio.id_colegio}}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

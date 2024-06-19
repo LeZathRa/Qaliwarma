@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+
+        <h1 class="mt-4 mb-3">
+            <small>Colegios</small>
+        </h1>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item active">Colegios</li>
+        </ol>
+
+        <h2>Seleccione:</h2>
+        <br>
+        <a th:href="@{/colegios/agregarColegio}" class="btn btn-primary mb-3">Agregar Colegio</a>
+        <div class="row">
+            <div th:each="colegio:${colegios}" class="col-md-4 mb-4">
+                <div class="card">
+					<img th:src="${colegio.imagen_colegio}" class="card-img-top imagen-colegio" alt="Imagen del colegio"      
+					style="max-width: 1000px; max-height: 200px; object-fit: cover;">    
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${colegio.nombre_colegio}"></h5>
+                        <p class="card-text">ubicacion: <span th:text="${colegio.ubicacion}"></span></p>
+                        <p class="card-text">N.Encargados: <span class="badge bg-primary rounded-pill" th:text="${colegio.encargados.size()}"></span></p>
+                        <a th:href="@{/colegios/verInformacion/{id_Colegio}(id_Colegio=${colegio.id_colegio})}" class="btn btn-primary">Ver informacion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

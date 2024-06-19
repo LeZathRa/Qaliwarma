@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div th:fragment="barranav">
+    <div class="container">
+        <h1 class="mt-4 mb-3">
+            <small>Detalles del Colegio</small>
+        </h1>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <img th:src="${colegio.imagen_colegio}" alt="Imagen del Colegio" class="img-fluid" style="max-width: 100%; max-height: 100%;">
+            </div>
+        </div>
+        <br>
+                    <div class="col-md-8"> 
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="info-tab" data-bs-toggle="tab" th:href="@{/colegios/verInformacion/{id_Colegio}(id_Colegio=${colegio.id_colegio})}">Información</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="info-tab" data-bs-toggle="tab" th:href="@{/colegios/verEncargados/{id_Colegio}(id_Colegio=${colegio.id_colegio})}">Encargados</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
+    </div>
+</body>
+</html>

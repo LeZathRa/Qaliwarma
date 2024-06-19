@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragmentos/header :: head">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:insert="/fragmentos/header :: menu"></div>
+    <div class="container">
+
+        <h1 class="mt-4 mb-3">
+            <small>Agregar Nueva Categoría</small>
+        </h1>
+
+        <form th:action="@{/categorias/guardarCategoria}" method="post" th:object="${categoria}">
+            <div class="mb-3">
+                <label for="nombreCategoria" class="form-label">Nombre de la Categoría:</label>
+                <input type="text" class="form-control" id="nombreCategoria" th:field="*{nombre_categoria}" required>
+                <p th:if="${#fields.hasErrors('nombre_categoria')}" th:errors="*{nombre_categoria}" class="text-danger"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a th:href="@{/categorias/ListaCategorias}" class="btn btn-danger">Cancelar</a>
+        </form>
+
+    </div>
+
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

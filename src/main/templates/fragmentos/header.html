@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <title>Spring JPA</title>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{assets/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-bheRwT6B9oNInNl+9C6UdFtNG+xgpxaLUOfZ5HP6b5UfMz5YPkslWWRshHJz1Q1M" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <div th:fragment="menu">
+        <div class="container">
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Qaliwarma Administrator</a>
+                    <div class="d-flex">
+						<div style="margin-right: 30px;">
+							<a href="/productos/show">
+                                    Inicio<span class="sr-only">(current)</span>
+                            </a>
+						</div>
+						<div style="margin-right: 30px;">
+							<a href="/categorias/ListaCategorias">
+                                    Categorias<span class="sr-only">(current)</span>
+                                </a>
+						</div>
+						<div style="margin-right: 30px;">
+							<a href="/colegios/ListaColegios">
+                                    Colegios<span class="sr-only">(current)</span>
+                            </a>
+						</div>
+						<div style="margin-right: 30px;">
+							<form class="d-flex" >
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+						</div>
+                    </div>
+                    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                         
+                            <li class="nav-item active">
+								<br>
+                             <form th:action="@{/logout}" method="POST">
+                                  <input class="btn btn-danger" type="submit" value="Cerrar Sesión"/>
+                             </form>
+                            </li>
+                        </ul>
+                       
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>
